@@ -17,6 +17,8 @@ public class CustomerModel {
         this.isActive = isActive;
     }
 
+    public CustomerModel() {
+    }
     // toString is necessary for printing the content of a class object
 
     @Override

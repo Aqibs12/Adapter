@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getEveryone());
         list_lv.setAdapter(customerArrayAdapter);
+        /*list_lv.setAdapter(customerArrayAdapter);*/
 
         // Button listeners for the add and viewAll
 
