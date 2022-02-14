@@ -2,6 +2,7 @@ package com.example.sqldemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +18,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // Reference to buttons and other controls in the layout
-    Button btn_add, btn_viewAll;
+    Button btn_add, btn_viewAll, showData;
     EditText et_customerName, age;
     Switch switch1;
+
     ListView list_lv;
     ArrayAdapter customerArrayAdapter;
 
@@ -35,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
         age = findViewById(R.id.tv_Age);
         switch1 = findViewById(R.id.sw_active);
         list_lv = findViewById(R.id.list_detail);
+        showData = findViewById(R.id.btn_show);
+
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
 
         ArrayAdapter customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getEveryone());
         list_lv.setAdapter(customerArrayAdapter);
-        /*list_lv.setAdapter(customerArrayAdapter);*/
 
         // Button listeners for the add and viewAll
 
@@ -66,49 +69,36 @@ public class MainActivity extends AppCompatActivity {
 
                 boolean success = dataBaseHelper.addOne(customerModel);
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-
-
                 ArrayAdapter customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getEveryone());
 
-
-
             }
-
-
         });
-
-      /*  list_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> Parent, View view, int i, long l) {
-
-            }
-        });*/
-
-
 
         btn_viewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 try {
-
-
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                     List<CustomerModel> everyone = dataBaseHelper.getEveryone();
-
-
                     ArrayAdapter customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getEveryone());
                     list_lv.setAdapter(customerArrayAdapter);
-
                 }
                 catch (Exception e){
-
                     Toast.makeText(MainActivity.this,"Fail to view",Toast.LENGTH_SHORT ).show();
-
-
                 }
+            }
+        });
 
-
+        showData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ShowData.class);
+                startActivity(intent);
+                /*Intent intent = new Intent(getBaseContext(), SignoutActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", sessionId);
+                startActivity(intent);
+*/
 
             }
         });

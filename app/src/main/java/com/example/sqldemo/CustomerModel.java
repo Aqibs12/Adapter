@@ -59,8 +59,13 @@ public class CustomerModel {
         Age = age;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String isActive() {
+        final boolean isActive = this.isActive;
+        if (isActive) {
+            return "Active" ;
+        } else {
+            return "Not Active";
+        }
     }
 
     public void setActive(boolean active) {

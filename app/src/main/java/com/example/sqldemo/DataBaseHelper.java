@@ -29,7 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String createTableStatement = "CREATE TABLE " +  CUSTOMER_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CUSTOMER_NAME + " TEXT, " + COLUMN_CUSTOMER_AGE + " INT, " + COLUMN_ACTIVE_CUSTOMER + " BOOL)";
-
+        db.execSQL(createTableStatement);
 
     }
 
@@ -117,7 +117,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         // Close both the cursor and the db when done.
         cursor.close();
-        db.close();
+        /*db.close();*/
         return returnList;
     }
 }
